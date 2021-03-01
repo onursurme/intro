@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem,Table} from 'reactstrap';
+import { Table} from 'reactstrap';
+
 class ProductList extends Component {
     constructor(props) {
         super(props);
@@ -10,15 +11,24 @@ class ProductList extends Component {
         }
     }
     componentDidMount() {//render işleminden önce tetiklemek için kullanılır.
-        this.getProducts();
+        var jsons= require('C:/react/intro/src/db.json');
+        this.getProducts(jsons);
     }
-    getProducts() {
-        fetch("http://localhost:3000/products")
+    getProducts(jsons) {
+       
+        jsons.products.forEach(element => {
+            this.state.products.push(element)
+            
+        })
+        
+        /*fetch("http://localhost:3000/products")
             .then(Response => Response.json())
-            .then(data => this.setState({ products: data }));
+            .then(data => this.setState({ products: data }));*/
     }
+
     render() {
         var sayi=0;
+        
         return (
             <div>
                 <h3>{this.props.info.title}-{this.props.currentId}</h3>
@@ -26,20 +36,23 @@ class ProductList extends Component {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th>Ürün İsmi</th>
+                            <th>Bir Porsiyondaki Miktar</th>
+                            <th>Birim Fiyat</th>
+                            <th>Ürün Stok</th>
                         </tr>
                     </thead>
                     {this.state.products.map(product => (
-                        (this.props.currentId==product.categoryId)?
-                    <tbody>
+                        (this.props.currentId===product.categoryId)?
+                    <tbody className="">
                         
-                        <tr>
+                        <tr key={product.id}>
                             <th scope="row">{sayi.innerHTML, sayi++}</th>
                             <td>{product.productName}</td>
                             <td>{product.quantityPerUnit}</td>
                             <td>{product.unitPrice}</td>
+                            <td>{product.unitsInStock}</td>
+                            <td><button className=" fas fa-plus-circle "  ></button></td>
                         </tr>
                         
                     </tbody>
