@@ -48,7 +48,7 @@ class CategoryList extends Component {
                         ))
                         }
                     </ListGroup>
-                    <h4>{currentCategory}</h4>
+                    
                 </div>
             </div>
         );

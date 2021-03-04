@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table} from 'reactstrap';
 
 class ProductList extends Component {
+    
     constructor(props) {
         super(props);
 
@@ -11,19 +12,19 @@ class ProductList extends Component {
         }
     }
     componentDidMount() {//render işleminden önce tetiklemek için kullanılır.
-        var jsons= require('C:/react/intro/src/db.json');
-        this.getProducts(jsons);
+        //var jsons= require('C:/react/intro/src/db.json');
+        this.getProducts();
     }
     getProducts(jsons) {
        
-        jsons.products.forEach(element => {
+        /*jsons.products.forEach(element => {
             this.state.products.push(element)
             
-        })
+        })*/
         
-        /*fetch("http://localhost:3000/products")
+        fetch("http://localhost:3000/products")
             .then(Response => Response.json())
-            .then(data => this.setState({ products: data }));*/
+            .then(data => this.setState({ products: data }));
     }
 
     render() {
@@ -31,7 +32,7 @@ class ProductList extends Component {
         
         return (
             <div>
-                <h3>{this.props.info.title}-{this.props.currentId}</h3>
+                <h3>{this.props.info.title}</h3>
                 <Table hover dark>
                     <thead>
                         <tr>
@@ -40,6 +41,7 @@ class ProductList extends Component {
                             <th>Bir Porsiyondaki Miktar</th>
                             <th>Birim Fiyat</th>
                             <th>Ürün Stok</th>
+                            <th></th>
                         </tr>
                     </thead>
                     {this.state.products.map(product => (
@@ -52,7 +54,7 @@ class ProductList extends Component {
                             <td>{product.quantityPerUnit}</td>
                             <td>{product.unitPrice}</td>
                             <td>{product.unitsInStock}</td>
-                            <td><button className=" fas fa-plus-circle "  ></button></td>
+                            <td><button onClick={()=>this.props.addToCart(product)} className=" fas fa-plus-circle "  ></button></td>
                         </tr>
                         
                     </tbody>
