@@ -9,6 +9,7 @@ import {
     
 
 } from 'reactstrap';
+import {Link} from "react-router-dom"
 class CartSummary extends Component {
     render() {
         return (
@@ -21,7 +22,7 @@ class CartSummary extends Component {
                         {
                             this.props.cart.map(cartItem => (
                                 <DropdownItem key={cartItem.product.id} className="ml-auto" >
-                                    <Badge color="danger" onClick={()=>this.props.removeFromCart(cartItem.product)}><i class="far fa-trash-alt"></i></Badge>
+                                    <Badge color="danger" onClick={()=>this.props.removeFromCart(cartItem.product)}><i className="far fa-trash-alt"></i></Badge>
                                      {cartItem.product.productName}-
                                      
                                     <Badge color="success" >{cartItem.quantity}</Badge>
@@ -32,9 +33,14 @@ class CartSummary extends Component {
 
 
                         <DropdownItem divider />
-                        <DropdownItem>
-                            Reset
+                        
+                        <DropdownItem onClick={()=>this.props.dellCart()}>
+                            Sepeti Sil
                         </DropdownItem>
+                        <DropdownItem >
+                            <Link to="cart">Sepete Git</Link>
+                        </DropdownItem>
+                         
                     </DropdownMenu>
                 </UncontrolledDropdown>
             </div>

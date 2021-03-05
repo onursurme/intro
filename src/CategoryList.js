@@ -36,8 +36,7 @@ class CategoryList extends Component {
                 <div>
                     <ListGroup className="list-group ">
 
-                        {this.state.categories.map(category => (
-
+                        {this.state.categories.map(category => (//json dan gelen categorileri map parametresi ile dönmesi olayı
                             <ListGroupItem
 
                                 onClick={() => chanceCategory(category)}

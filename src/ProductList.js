@@ -54,7 +54,7 @@ class ProductList extends Component {
                             <td>{product.quantityPerUnit}</td>
                             <td>{product.unitPrice}</td>
                             <td>{product.unitsInStock}</td>
-                            <td><button onClick={()=>this.props.addToCart(product)} className=" fas fa-plus-circle "  ></button></td>
+                            <td><button onClick={()=>this.props.addToCart(product)}  className="btn btn-primary btn-circle btn-sm" ><i className="fas fa-plus-circle"></i></button></td>
                         </tr>
                         
                     </tbody>
