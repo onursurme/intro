@@ -38,7 +38,7 @@ class Navi extends Component {
                 
               </NavItem>
               <NavItem>
-                <NavLink href="#">GitHub</NavLink>
+              <NavLink><Link to="form2" className="text-muted">Form2</Link></NavLink>
               </NavItem>
               <CartSummary
                 cart={this.props.cart}

@@ -14,8 +14,8 @@ class CategoryList extends Component {
 
     }
     componentDidMount() {//render işleminden önce tetiklemek için kullanılır.
-        var jsons = require('C:/react/intro/src/db.json');
-        this.getCategories(jsons);
+        //var jsons = require('C:/react/intro/src/db.json');
+        this.getCategories();
     }
     getCategories(jsons) {
         /* jsons.categories.forEach(element => {
@@ -41,7 +41,7 @@ class CategoryList extends Component {
 
                                 onClick={() => chanceCategory(category)}
                                 key={category.id}
-                                className="list-group-item list-group-item-action list-group-item-warning"
+                                className=" list-group-item-warning"
                                 active={category.categoryName === currentCategory ? true : false}>
                                 {category.categoryName}</ListGroupItem>
                         ))

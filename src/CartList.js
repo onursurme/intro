@@ -29,7 +29,7 @@ class CartList extends Component {
                                     <td>{cartItem.product.unitPrice}</td>
                                     <td>{cartItem.product.unitsInStock}</td>
                                     <td>{cartItem.quantity}</td>
-                                    <td><button onClick={()=>this.props.removeFromCart(cartItem.product)}><i className="far fa-trash-alt"></i></button></td>
+                                    <td><button onClick={()=>this.props.removeFromCart(cartItem.product)} className="btn btn-sm btn-primary"><i className="far fa-trash-alt"></i></button></td>
                                 </tr>
                             ))
 

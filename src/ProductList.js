@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table} from 'reactstrap';
-
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import PerfectScrollbar from 'react-perfect-scrollbar'
 class ProductList extends Component {
     
     constructor(props) {
@@ -33,6 +34,8 @@ class ProductList extends Component {
         return (
             <div>
                 <h3>{this.props.info.title}</h3>
+                <PerfectScrollbar style={{display: 600, height: 500}}>
+                        <div>
                 <Table hover dark>
                     <thead>
                         <tr>
@@ -44,6 +47,7 @@ class ProductList extends Component {
                             <th></th>
                         </tr>
                     </thead>
+                    
                     {this.state.products.map(product => (
                         (this.props.currentId===product.categoryId)?
                     <tbody className="">
@@ -61,7 +65,10 @@ class ProductList extends Component {
                     :null
                     ))
                     }
+                    
                 </Table>
+                </div>
+                </PerfectScrollbar>
             </div>
         );
     }

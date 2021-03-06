@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'alertifyjs/build/css/alertify.css';
 import {BrowserRouter} from 'react-router-dom';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 ReactDOM.render(
   <React.StrictMode >
     <BrowserRouter><App /></BrowserRouter>
