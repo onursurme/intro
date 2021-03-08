@@ -42,7 +42,7 @@ class CategoryList extends Component {
                                 onClick={() => chanceCategory(category)}
                                 key={category.id}
                                 className=" list-group-item-warning"
-                                active={category.categoryName === currentCategory ? true : false}>
+                                active={category.categoryName === currentCategory ? true : false}>{/* */}
                                 {category.categoryName}</ListGroupItem>
                         ))
                         }

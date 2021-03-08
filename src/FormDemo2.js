@@ -34,9 +34,11 @@ class FormDemo2 extends Component {
                     </FormGroup>
                     <FormGroup>
                     <Label htmlFor="description">description</Label>
-                    <Input type="textarea" name="description" id="description" placeholder></Input>
+                    <Input type="textarea" name="description" id="description" placeholder="description" onChange={this.handleChange.bind(this)}></Input>
                     </FormGroup>
-                    
+                    <FormGroup>
+                        <Button type="submit" className="col-auto">save</Button>
+                    </FormGroup>
   
                     
                     
