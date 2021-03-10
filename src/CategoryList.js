@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import PropTypes from "prop-types";
-
+import axios from "axios"
 class CategoryList extends Component {
 
     constructor(props) {
@@ -21,11 +21,15 @@ class CategoryList extends Component {
         /* jsons.categories.forEach(element => {
              this.state.categories.push(element)
              
-         })*/
+         })
         fetch("http://localhost:3000/categories")
             .then(Response => Response.json())
-            .then(data => this.setState({ categories: data }));
+            .then(data => this.setState({ categories: data }));*/
+            axios.get('http://localhost:3000/categories').then( res => {//axios ile json verisi çekildi
+                this.setState({ categories: res.data })
+              })
     }
+
 
     render() {
 
