@@ -6,7 +6,7 @@ class CategoryList extends Component {
 
     constructor(props) {
         super(props);
-
+        this.getCategories=this.getCategories.bind(this)
         this.state = {
             categories: []
 
@@ -14,30 +14,34 @@ class CategoryList extends Component {
 
     }
     componentDidMount() {//render işleminden önce tetiklemek için kullanılır.
-        //var jsons = require('C:/react/intro/src/db.json');
+        //var jsons = require('./db.json');
         this.getCategories();
     }
     getCategories(jsons) {
-        /* jsons.categories.forEach(element => {
-             this.state.categories.push(element)
+         /*jsons.categories.forEach(element => {
+             
+             this.setState({categories:element})
              
          })
+         
         fetch("http://localhost:3000/categories")
             .then(Response => Response.json())
             .then(data => this.setState({ categories: data }));*/
-            axios.get('http://localhost:3000/categories').then( res => {//axios ile json verisi çekildi
-                this.setState({ categories: res.data })
+            axios.get('http://localhost:3000/categories').then( Response => {//axios ile json verisi çekildi
+                this.setState({ categories: Response.data })
               })
+              
     }
 
 
     render() {
-
+        
         const { currentCategory, chanceCategory, info } = this.props;//destructing ile props kullanmaya gerek kalmadan gelen değerleri  okuyabiliriz
         return (
             <div>
                 <h3 >{info.title}<i className="fas fa-shopping-cart"></i></h3>
                 <div>
+                
                     <ListGroup className="list-group ">
 
                         {this.state.categories.map(category => (//json dan gelen categorileri map parametresi ile dönmesi olayı
