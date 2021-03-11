@@ -20,7 +20,7 @@ class CategoryList extends Component {
         var jsons = require('./db.json');
         jsons= Object.values(jsons);
          jsons.forEach(element => {
-             console.log(element)
+             
              this.setState({categories:element})
              
          });
