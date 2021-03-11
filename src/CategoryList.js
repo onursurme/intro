@@ -17,9 +17,9 @@ class CategoryList extends Component {
         //var jsons = require('./db.json');
         this.getCategories();
     }
-    getCategories(jsons) {
+    getCategories() {
          /*jsons.categories.forEach(element => {
-             
+             console.log(element)
              this.setState({categories:element})
              
          })
