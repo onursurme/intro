@@ -14,22 +14,23 @@ class CategoryList extends Component {
 
     }
     componentDidMount() {//render işleminden önce tetiklemek için kullanılır.
-        //var jsons = require('./db.json');
         this.getCategories();
     }
     getCategories() {
-         /*jsons.categories.forEach(element => {
+        var jsons = require('./db.json');
+        jsons= Object.values(jsons);
+         jsons.forEach(element => {
              console.log(element)
              this.setState({categories:element})
              
-         })
+         });
          
-        fetch("http://localhost:3000/categories")
+        /*fetch("http://localhost:3000/categories")
             .then(Response => Response.json())
             .then(data => this.setState({ categories: data }));*/
-            axios.get('http://localhost:3000/categories').then( Response => {//axios ile json verisi çekildi
-                this.setState({ categories: Response.data })
-              })
+            //axios.get('http://localhost:3000/categories').then( Response => {//axios ile json verisi çekildi
+             //   this.setState({ categories: Response.data })
+            //  })
               
     }
 
