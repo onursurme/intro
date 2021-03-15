@@ -10,6 +10,7 @@ import NotFound from './NotFound';
 import CartList from './CartList';
 import FormDemo1 from './FormDemo1';
 import FormDemo2 from './FormDemo2';
+import Hooks from './hooks';
 
 class App extends Component {
   constructor(props) {
@@ -64,9 +65,11 @@ class App extends Component {
                 currentCategory={this.state.currentCategory}
                 chanceCategory={this.chanceCategory.bind(this)}
                 info={CategoryInfo}
+                
               />
-
+              
             </Col>
+            
             <Col xs="8">
               <Switch>{/*switch bütün routeları dolaşmak için kullanılır tek / ana sayfa demek */}
                 <Route exact path="/" render={props => (//render ile productlist hem çağırıp hemde değer gönderimi yapılabiliyor
