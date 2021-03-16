@@ -6,13 +6,14 @@ class FormDemo2 extends Component {
         super(props);
         this.state={email:"",password:"",city:"",description:""}
     }
+    
     handleChange(event){
         let name=event.target.name
         let value=event.target.value
         this.setState({[name]:value})
     }
     handleSubmit(event){
-        event.preventDefault();
+        event.preventDefault();//kayıt yapıldığı zaman sayfanın yenilenmesini engellemek için kullanılır.
         alertify.success("kayıt başarılı");
     }
     render() {
@@ -37,7 +38,7 @@ class FormDemo2 extends Component {
                     <Input type="textarea" name="description" id="description" placeholder="description" onChange={this.handleChange.bind(this)}></Input>
                     </FormGroup>
                     <FormGroup>
-                        <Button type="submit" className="col-auto">save</Button>
+                    <Button type="submit" className="col-auto">save</Button>
                     </FormGroup>
   
                     

@@ -4,23 +4,22 @@ import PropTypes from "prop-types";
 import axios from "axios";
 function CategoryList({ currentCategory, chanceCategory, info }) {
     
-  const [state, setstate] = useState({ categories: [] });
+  const [state, setstate] = useState({ categories: [] });//class yapısında karşılığı setstate
 
-  useEffect(() => {
+  useEffect(() => {//class yapısında karşılığı componentdidmount
       getCategories();
-    function getCategories  (){
+    function getCategories (){
         axios
           .get("http://localhost:3000/categories")
           .then((Response) => {
             //axios ile json verisi çekildi
-            console.log(Response);
             setstate({ categories: Response.data }); //Hooks da karşılığı useState
           })
           .catch((error) => {
             console.log(error);
           });
       };
-  }, []);
+  }, []);// boş köşeli parantez renderdan önce useeffecti çalıştır demek
 
   
 
