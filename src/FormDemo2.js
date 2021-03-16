@@ -20,6 +20,7 @@ class FormDemo2 extends Component {
         return (
             <div>
                 <h3><br></br></h3>
+                
                 <Form onSubmit={this.handleSubmit.bind(this)}>
                     <FormGroup>
                     <Label htmlFor="email">Email</Label>
