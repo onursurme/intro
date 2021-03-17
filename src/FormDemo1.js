@@ -46,11 +46,11 @@ function FormDemo1(){
                 
                 <form onSubmit={handleSubmit(onSubmit)} className="form-group">
                     
-                <label>city:{}</label>
+                <label>id:{}</label>
                     <input name="id"  type="text" className="form-control col-md-5 " ref={register}></input>
-                    <label>city:{}</label> 
+                    <label>CategoryName:{}</label> 
                     <input name="categoryName"  type="text" className="form-control col-md-5 " ref={register({required:true,minLength:3})}></input>
-                    <label>city:{}</label>
+                    <label>SeoUrl{}</label>
                     <input name="city"  type="text" className="form-control col-md-5 " ref={register()}></input>
                     
                     {errors.city && <p>şehir 3 harften az olamaz</p>}   

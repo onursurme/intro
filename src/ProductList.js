@@ -1,39 +1,35 @@
-import React, { Component } from 'react';
+import React, {useEffect,useState } from 'react';
 import { Table} from 'reactstrap';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
-class ProductList extends Component {
+import axios from 'axios'
+function ProductList({currentId,info,addToCart}){
+
+   const [state,setstate]= useState({products:[]})
+
+    useEffect(() => {//class yapısında karşılığı componentdidmount
+        getProducts();
+      function getProducts (){
+          axios
+            .get("http://localhost:3000/products")
+            .then((Response) => {
+              //axios ile json verisi çekildi
+              setstate({ products: Response.data }); //Hooks da karşılığı useState
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        };
+    }, []);// boş köşeli parantez renderdan önce useeffecti çalıştır demek
     
-    constructor(props) {
-        super(props);
+    
 
-        this.state = {
-            products: []
-
-        }
-    }
-    componentDidMount() {//render işleminden önce tetiklemek için kullanılır.
-        //var jsons= require('C:/react/intro/src/db.json');
-        this.getProducts();
-    }
-    getProducts(jsons) {
-       
-        /*jsons.products.forEach(element => {
-            this.state.products.push(element)
-            
-        })*/
-        
-        fetch("http://localhost:3000/products")
-            .then(Response => Response.json())
-            .then(data => this.setState({ products: data }));
-    }
-
-    render() {
+    
         var sayi=0;
         
         return (
             <div>
-                <h3>{this.props.info.title}</h3>
+                <h3>{info.title}</h3>
                 <PerfectScrollbar style={{display: 600, height: 500}}>
                         <div>
                 <Table hover dark>
@@ -48,8 +44,8 @@ class ProductList extends Component {
                         </tr>
                     </thead>
                     
-                    {this.state.products.map(product => (
-                        (this.props.currentId===product.categoryId)?
+                    {state.products.map(product => (
+                        (currentId===product.categoryId)?
                     <tbody className="">
                         
                         <tr key={product.id}>
@@ -58,7 +54,7 @@ class ProductList extends Component {
                             <td>{product.quantityPerUnit}</td>
                             <td>{product.unitPrice}</td>
                             <td>{product.unitsInStock}</td>
-                            <td><button onClick={()=>this.props.addToCart(product)}  className="btn btn-primary btn-circle btn-sm" ><i className="fas fa-plus-circle"></i></button></td>
+                            <td><button onClick={()=>addToCart(product)}  className="btn btn-primary btn-circle btn-sm" ><i className="fas fa-plus-circle"></i></button></td>
                         </tr>
                         
                     </tbody>
@@ -72,7 +68,7 @@ class ProductList extends Component {
             </div>
         );
     }
-}
+
 
 export default ProductList;
 /*
@@ -87,4 +83,5 @@ export default ProductList;
                             }</ListGroupItem>:null
                     ))
                     }
-                </ListGroup>*/
+                </ListGroup>
+                */

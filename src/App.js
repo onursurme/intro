@@ -91,7 +91,7 @@ class App extends Component {
                 )} />{/* component ile .js dosyasına ulaşmayı sağlıyor parametresiz ulaşım için*/}
                 <Route exact path="/form" component={FormDemo1}/>
                 <Route exact path="/form2" component={FormDemo2}/>
-                <Route component={NotFound} />{/* eğer / dan sonra bulunmayan bir sayfa ismi yazılırsa switch path yolu olmadığı için burayı çalıştırır*/}
+                <Route exact component={NotFound} />{/* eğer / dan sonra bulunmayan bir sayfa ismi yazılırsa switch path yolu olmadığı için burayı çalıştırır*/}
                 
 
                 
