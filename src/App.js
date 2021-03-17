@@ -3,48 +3,47 @@ import Navi from './Navi';
 import CategoryList from './CategoryList';
 import ProductList from './ProductList';
 import { Container, Row, Col, ListGroupItem, ListGroup } from "reactstrap";
-import React, { Component } from 'react';
+import React, { useState,useEffect } from 'react';
 import alertify from 'alertifyjs';
 import { Route, Switch } from 'react-router-dom';
 import NotFound from './NotFound';
 import CartList from './CartList';
 import FormDemo1 from './FormDemo1';
 import FormDemo2 from './FormDemo2';
-import Hooks from './hooks';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentCategory: [], currentId: [], cart: []//
-    }
+function App (){
+
+  const [state,setstate]=useState({currentCategory:[]})
+  const [stateId,setstateId]=useState({currentId:[]})
+  const [stateCart,setstateCart]=useState({cart:[]})
+
+
+  function chanceCategory(category) {//category listdeki listitem den kontrol ediliyor
+
+    setstate({ currentCategory: category.categoryName})
+    setstateId({currentId:category.id})
+
+
   }
-
-  chanceCategory(category) {//category listdeki listitem den kontrol ediliyor
-
-    this.setState({ currentCategory: category.categoryName, currentId: category.id })
-
-
-  }
-  addToCart(product) {//product list deki ekle butonundan kontrol ediliyor
-    let newCart = this.state.cart;
+  function addToCart(product) {//product list deki ekle butonundan kontrol ediliyor
+    let newCart = stateCart.cart;
     var addedItem = newCart.find(c => c.product.id === product.id);
     (addedItem) ? addedItem.quantity += 1 : (newCart.push({ product: product, quantity: 1 }))//eğer additem deki id uyuşuyorsa miktarını arttır eşleşmiyorsa  ürün ekle demek
-    this.setState({ cart: newCart });
+    setstateCart({ cart: newCart });
     alertify.success(product.productName + " Sepete Eklendi", 3);//ekranda ekleme yapıldığı zaman çıkacak olan alert mesajı 3sn kalıyor
   }
-  removeFromCart(product) {
-    let newCart = this.state.cart.filter(c => c.product.id !== product.id);
-    this.setState({ cart: newCart });
+  function removeFromCart(product) {
+    let newCart = stateCart.cart.filter(c => c.product.id !== product.id);
+    setstateCart({ cart: newCart });
     alertify.error(product.productName + "Sepetten Silindi", 3);
   }
-  dellCart() {
-    this.setState({ cart: [] });
+  function dellCart() {
+    setstateCart({ cart: [] });
     alertify.error("Sepet Silindi", 3);
   }
 
 
-  render() {
+  
 
     let CategoryInfo = { title: "Categoriler" }
     let ProductInfo = { title: "Ürünler" }
@@ -54,16 +53,16 @@ class App extends Component {
         <Container>
 
           <Navi
-            cart={this.state.cart}
-            removeFromCart={this.removeFromCart.bind(this)}
-            dellCart={this.dellCart.bind(this)}
+            cart={stateCart.cart}
+            removeFromCart={removeFromCart}
+            dellCart={dellCart}
           ></Navi>
 
           <Row>
             <Col xs="4">
               <CategoryList
-                currentCategory={this.state.currentCategory}
-                chanceCategory={this.chanceCategory.bind(this)}
+                currentCategory={state.currentCategory}
+                chanceCategory={chanceCategory}
                 info={CategoryInfo}
                 
               />
@@ -75,23 +74,23 @@ class App extends Component {
                 <Route exact path="/" render={props => (//render ile productlist hem çağırıp hemde değer gönderimi yapılabiliyor
                   <ProductList
                     {...props}
-                    currentId={this.state.currentId}
+                    currentId={stateId.currentId}
                     info={ProductInfo}
-                    addToCart={this.addToCart.bind(this)}
+                    addToCart={addToCart}
 
                   />
                 )} />
                 <Route exact path="/cart" render={props => (
                   <CartList
                     {...props}
-                    cart={this.state.cart}
-                    removeFromCart={this.removeFromCart.bind(this)}
+                    cart={stateCart.cart}
+                    removeFromCart={removeFromCart}
 
                   />
                 )} />{/* component ile .js dosyasına ulaşmayı sağlıyor parametresiz ulaşım için*/}
                 <Route exact path="/form" component={FormDemo1}/>
                 <Route exact path="/form2" component={FormDemo2}/>
-                <Route exact component={NotFound} />{/* eğer / dan sonra bulunmayan bir sayfa ismi yazılırsa switch path yolu olmadığı için burayı çalıştırır*/}
+                <Route component={App} />{/* eğer / dan sonra bulunmayan bir sayfa ismi yazılırsa switch path yolu olmadığı için burayı çalıştırır*/}
                 
 
                 
@@ -106,7 +105,7 @@ class App extends Component {
     );
 
   }
-}
+
 
 
 export default App;

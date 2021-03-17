@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState,useEffect} from 'react';
 import {
 
     UncontrolledDropdown,
@@ -10,19 +10,19 @@ import {
 
 } from 'reactstrap';
 import {Link} from "react-router-dom"
-class CartSummary extends Component {
-    render() {
+function CartSummary({cart,removeFromCart,dellCart}){
+
         return (
             <div>
                 <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>
-                        Cart-{this.props.cart.length}
+                        Cart-{cart.length}
                     </DropdownToggle>
                     <DropdownMenu right>
                         {
-                            this.props.cart.map(cartItem => (
+                            cart.map(cartItem => (
                                 <DropdownItem key={cartItem.product.id} className="ml-auto" >
-                                    <Badge color="danger" onClick={()=>this.props.removeFromCart(cartItem.product)}><i className="far fa-trash-alt"></i></Badge>
+                                    <Badge color="danger" onClick={()=>removeFromCart(cartItem.product)}><i className="far fa-trash-alt"></i></Badge>
                                      {cartItem.product.productName}-
                                      
                                     <Badge color="success" >{cartItem.quantity}</Badge>
@@ -34,7 +34,7 @@ class CartSummary extends Component {
 
                         <DropdownItem divider />
                         
-                        <DropdownItem onClick={()=>this.props.dellCart()}>
+                        <DropdownItem onClick={()=>dellCart()}>
                             Sepeti Sil
                         </DropdownItem>
                         <DropdownItem >
@@ -46,6 +46,6 @@ class CartSummary extends Component {
             </div>
         );
     }
-}
+
 
 export default CartSummary;

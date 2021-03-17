@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { useEffect,useState } from 'react';
 import {Table} from 'reactstrap'
-class CartList extends Component {
-    renderCart(){
+function CartList ({cart,removeFromCart}){
+
+
+   function renderCart(){
         var sayi=0;
         return(
             <div>
@@ -21,7 +23,7 @@ class CartList extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.props.cart.map(cartItem=>(
+                            cart.map(cartItem=>(
                                 <tr key={cartItem.product.id}>
                                     <th>{sayi.innerHTML, sayi++}</th>
                                     <td>{cartItem.product.productName}</td>
@@ -29,7 +31,7 @@ class CartList extends Component {
                                     <td>{cartItem.product.unitPrice}</td>
                                     <td>{cartItem.product.unitsInStock}</td>
                                     <td>{cartItem.quantity}</td>
-                                    <td><button onClick={()=>this.props.removeFromCart(cartItem.product)} className="btn btn-sm btn-primary"><i className="far fa-trash-alt"></i></button></td>
+                                    <td><button onClick={()=>removeFromCart(cartItem.product)} className="btn btn-sm btn-primary"><i className="far fa-trash-alt"></i></button></td>
                                 </tr>
                             ))
 
@@ -39,14 +41,14 @@ class CartList extends Component {
             </div>
         )
     }
-    render() {
+    
         
         return (
             <div>
-               {this.renderCart()}
+               {renderCart()}
             </div>
         );
-    }
+    
 }
 
 export default CartList;

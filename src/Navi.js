@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React, { useState} from 'react';
 import {Link} from "react-router-dom";
 import {
   Collapse,
@@ -11,27 +11,20 @@ import {
   NavLink,
 
 } from 'reactstrap';
-import CartSummary from './CartSummary'
-class Navi extends Component {
-  constructor(props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
-  }
-  render() {
+import CartSummary from './CartSummary';
+const Navi =(props)=>{
+
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+ 
     return (
       <div >
         <Navbar color="light " light expand="md">
           <NavbarBrand ><Link to="/" className="text-muted" style={{textDecoration:'none'}}>HepsiAnnova</Link></NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar >
+          <NavbarToggler onClick={toggle} />
+          <Collapse isOpen={isOpen} navbar >
             <Nav className="ml-auto" navbar >
               <NavItem >
                 <NavLink><Link to="/form" className="text-muted" style={{textDecoration:'none'}}>Form</Link></NavLink>
@@ -41,9 +34,9 @@ class Navi extends Component {
               <NavLink><Link to="/form2" className="text-muted"style={{textDecoration:'none'}}>Form2</Link></NavLink>
               </NavItem>
               <CartSummary
-                cart={this.props.cart}
-                removeFromCart={this.props.removeFromCart}
-                dellCart={this.props.dellCart}
+                cart={props.cart}
+                removeFromCart={props.removeFromCart}
+                dellCart={props.dellCart}
                 />{/*buradan CartSummary js dosyasına ulaşılıyor */}
             </Nav>
 
@@ -52,7 +45,7 @@ class Navi extends Component {
       </div>
     );
   }
-}
+
 
 
 export default Navi;
