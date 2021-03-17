@@ -13,10 +13,11 @@ import { Container, Row, Col, ListGroupItem, ListGroup } from "reactstrap";
 import React, { useState,useEffect } from 'react';
 import alertify from 'alertifyjs';
 import { Route, Switch } from 'react-router-dom';
-import NotFound from './NotFound';
+
 import CartList from './CartList';
 import FormDemo1 from './FormDemo1';
 import FormDemo2 from './FormDemo2';
+import NotFound from './NotFound';
 
 function App (){
 
@@ -97,7 +98,7 @@ function App (){
                 )} />{/* component ile .js dosyasına ulaşmayı sağlıyor parametresiz ulaşım için*/}
                 <Route exact path="/form" component={FormDemo1}/>
                 <Route exact path="/form2" component={FormDemo2}/>
-                <Route component={App} />{/* eğer / dan sonra bulunmayan bir sayfa ismi yazılırsa switch path yolu olmadığı için burayı çalıştırır*/}
+                <Route component={NotFound}/>{/* eğer / dan sonra bulunmayan bir sayfa ismi yazılırsa switch path yolu olmadığı için burayı çalıştırır*/}
                 
 
                 
