@@ -1,4 +1,11 @@
+/* Annova Software
 
+File:App.js
+
+Contents: switch route yapısı ile sayfalar arası geçiş yapıldı diğer dosyaar ile bağlanntılar gerçekleştirildi
+
+History: 17.03.2021 FatihK
+*/
 import Navi from './Navi';
 import CategoryList from './CategoryList';
 import ProductList from './ProductList';

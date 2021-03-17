@@ -1,3 +1,11 @@
+/* Annova Software
+
+File:ProductList.js
+
+Contents: ürün listelemesi yapıldı scrollbar eklendi
+
+History: 17.03.2021 FatihK
+*/
 import React, {useEffect,useState } from 'react';
 import { Table} from 'reactstrap';
 import 'react-perfect-scrollbar/dist/css/styles.css';

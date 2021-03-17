@@ -1,3 +1,11 @@
+/* Annova Software
+
+File:CartSummary.js
+
+Contents: dropdown menu içerisinde sepet elemanları listelendi 
+
+History: 17.03.2021 FatihK
+*/
 import React, { useState,useEffect} from 'react';
 import {
 

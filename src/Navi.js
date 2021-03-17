@@ -1,4 +1,11 @@
+/* Annova Software
 
+File:Navi.js
+
+Contents: navbar oluşturuldu
+
+History: 17.03.2021 FatihK
+*/
 import React, { useState} from 'react';
 import {Link} from "react-router-dom";
 import {

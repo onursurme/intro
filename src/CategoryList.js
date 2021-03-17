@@ -1,3 +1,11 @@
+/* Annova Software
+
+File:CategoryList.js
+
+Contents: categoriller listelendi
+
+History: 17.03.2021 FatihK
+*/
 import React, { useState, useEffect } from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 import PropTypes from "prop-types";

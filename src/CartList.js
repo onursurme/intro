@@ -1,3 +1,11 @@
+/* Annova Software
+
+File:CartList.js
+
+Contents:sepet elemanları listelendi
+
+History: 17.03.2021 FatihK
+*/
 import React, { useEffect,useState } from 'react';
 import {Table} from 'reactstrap'
 function CartList ({cart,removeFromCart}){
