@@ -34,11 +34,11 @@ class Navi extends Component {
           <Collapse isOpen={this.state.isOpen} navbar >
             <Nav className="ml-auto" navbar >
               <NavItem >
-                <NavLink><Link to="form" className="text-muted" style={{textDecoration:'none'}}>Form</Link></NavLink>
+                <NavLink><Link to="/form" className="text-muted" style={{textDecoration:'none'}}>Form</Link></NavLink>
                 
               </NavItem>
               <NavItem>
-              <NavLink><Link to="form2" className="text-muted"style={{textDecoration:'none'}}>Form2</Link></NavLink>
+              <NavLink><Link to="/form2" className="text-muted"style={{textDecoration:'none'}}>Form2</Link></NavLink>
               </NavItem>
               <CartSummary
                 cart={this.props.cart}
