@@ -18,6 +18,7 @@ import CartList from './CartList';
 import FormDemo1 from './FormDemo1';
 import FormDemo2 from './FormDemo2';
 import NotFound from './NotFound';
+import FormDemo3 from './FormDemo3';
 
 function App (){
 
@@ -26,14 +27,14 @@ function App (){
   const [stateCart,setstateCart]=useState({cart:[]})
 
 
-  function chanceCategory(category) {//category listdeki listitem den kontrol ediliyor
+  const chanceCategory=(category)=> {//category listdeki listitem den kontrol ediliyor
 
     setstate({ currentCategory: category.categoryName})
     setstateId({currentId:category.id})
 
 
   }
-  function addToCart(product) {//product list deki ekle butonundan kontrol ediliyor
+  const  addToCart=(product) =>{//product list deki ekle butonundan kontrol ediliyor
     let newCart = stateCart.cart;
     var addedItem = newCart.find(c => c.product.id === product.id);
     (addedItem) ? addedItem.quantity += 1 : (newCart.push({ product: product, quantity: 1 }))//eğer additem deki id uyuşuyorsa miktarını arttır eşleşmiyorsa  ürün ekle demek
@@ -98,6 +99,7 @@ function App (){
                 )} />{/* component ile .js dosyasına ulaşmayı sağlıyor parametresiz ulaşım için*/}
                 <Route exact path="/form" component={FormDemo1}/>
                 <Route exact path="/form2" component={FormDemo2}/>
+                <Route exact path="/form3" component={FormDemo3}/>
                 <Route component={NotFound}/>{/* eğer / dan sonra bulunmayan bir sayfa ismi yazılırsa switch path yolu olmadığı için burayı çalıştırır*/}
                 
 

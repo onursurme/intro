@@ -13,30 +13,43 @@ import axios from "axios";
 function CategoryList({ currentCategory, chanceCategory, info }) {
     
   const [state, setstate] = useState({ categories: [] });//class yapısında karşılığı setstate
-
-  useEffect(() => {//class yapısında karşılığı componentdidmount
-      getCategories();
-    function getCategories (){
+  const [isLoading,setIsLoading]= useState(false);
+  useEffect(async() => {//class yapısında karşılığı componentdidmount
+    const time=3000;
+    setTimeout(() => {
+      setIsLoading(true); 
+    }, time);
+    
+      
         axios
           .get("http://localhost:3000/categories")
           .then((Response) => {
             //axios ile json verisi çekildi
             setstate({ categories: Response.data }); //Hooks da karşılığı useState
+            
+            setIsLoading(false);
           })
           .catch((error) => {
             console.log(error);
           });
-      };
+         
+          
+      
+      
   }, []);// boş köşeli parantez renderdan önce useeffecti çalıştır demek
 
   
 
   return (
+    
     <div>
       <h3>
         {info.title}
         <i className="fas fa-shopping-cart"></i>
       </h3>
+      {!isLoading ? (
+        <di>Loading.....</di>
+      ):(
       <div>
         <ListGroup className="list-group ">
           {state.categories.map((
@@ -53,6 +66,7 @@ function CategoryList({ currentCategory, chanceCategory, info }) {
           ))}
         </ListGroup>
       </div>
+      )}
     </div>
   );
 }

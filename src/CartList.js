@@ -39,7 +39,7 @@ function CartList ({cart,removeFromCart}){
                                     <td>{cartItem.product.unitPrice}</td>
                                     <td>{cartItem.product.unitsInStock}</td>
                                     <td>{cartItem.quantity}</td>
-                                    <td><button onClick={()=>removeFromCart(cartItem.product)} className="btn btn-sm btn-primary"><i className="far fa-trash-alt"></i></button></td>
+                                    <td><button onClick={()=>removeFromCart(cartItem.product)} className="btn btn-sm btn-danger"><i className="far fa-trash-alt"></i></button></td>
                                 </tr>
                             ))
 

@@ -15,9 +15,8 @@ function ProductList({currentId,info,addToCart}){
 
    const [state,setstate]= useState({products:[]})
 
-    useEffect(() => {//class yapısında karşılığı componentdidmount
-        getProducts();
-      function getProducts (){
+    useEffect(async() => {//class yapısında karşılığı componentdidmount
+        
           axios
             .get("http://localhost:3000/products")
             .then((Response) => {
@@ -27,7 +26,7 @@ function ProductList({currentId,info,addToCart}){
             .catch((error) => {
               console.log(error);
             });
-        };
+        
     }, []);// boş köşeli parantez renderdan önce useeffecti çalıştır demek
     
     
