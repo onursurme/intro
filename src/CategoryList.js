@@ -15,12 +15,18 @@ function CategoryList({ currentCategory, chanceCategory, info }) {
   const [state, setstate] = useState({ categories: [] });//class yapısında karşılığı setstate
   const [isLoading,setIsLoading]= useState(false);
   useEffect(async() => {//class yapısında karşılığı componentdidmount
-    const time=3000;
-    setTimeout(() => {
+    var count=0;
+    var intId=setInterval(counter,1000);
+    function counter(){
+      ++count;
+      if(count==5)
+      {
+      clearInterval(intId)
       setIsLoading(true); 
-    }, time);
-    
-      
+      alert("veri gelmedi")
+      }
+    }
+
         axios
           .get("http://localhost:3000/categories")
           .then((Response) => {
