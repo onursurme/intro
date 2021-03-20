@@ -15,18 +15,8 @@ function CategoryList({ currentCategory, chanceCategory, info }) {
   const [state, setstate] = useState({ categories: [] });//class yapısında karşılığı setstate
   const [isLoading,setIsLoading]= useState(false);
   useEffect(async() => {//class yapısında karşılığı componentdidmount
-    var count=0;
-    var intId=setInterval(counter,1000);
-    function counter(){
-      ++count;
-      if(count==5)
-      {
-      clearInterval(intId)
-      setIsLoading(true); 
-      alert("veri gelmedi")
-      }
-    }
-
+    
+    setIsLoading(true); 
         axios
           .get("http://localhost:3000/categories")
           .then((Response) => {
@@ -34,8 +24,10 @@ function CategoryList({ currentCategory, chanceCategory, info }) {
             setstate({ categories: Response.data }); //Hooks da karşılığı useState
             
             setIsLoading(false);
+            
           })
           .catch((error) => {
+             if(Error)alert("veri gelmedi");//error durumuna düştüğü zaman 
             console.log(error);
           });
          
@@ -53,7 +45,7 @@ function CategoryList({ currentCategory, chanceCategory, info }) {
         {info.title}
         <i className="fas fa-shopping-cart"></i>
       </h3>
-      {!isLoading ? (
+      {isLoading ? (
         <di>Loading.....</di>
       ):(
       <div>
@@ -78,3 +70,16 @@ function CategoryList({ currentCategory, chanceCategory, info }) {
 }
 
 export default CategoryList;
+/*bekletme kodu
+var count=0;
+    var intId=setInterval(counter,1000);
+    function counter(){
+      ++count;
+      if(count==5)
+      {
+      clearInterval(intId)
+      
+      alert("veri gelmedi")
+      }
+    }
+*/

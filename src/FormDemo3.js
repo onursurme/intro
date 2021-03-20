@@ -29,32 +29,52 @@ export default function FormDemo3() {
     <div class="col-md-8">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div class="form-group">
-          <label for="tc">Tc:</label>
-          <input type="number" name="tc" class="form-control" id="tc" placeholder="Tc kimlik numaranız" ref={register({
+          <label for="Tc">Tc:</label>
+          <input type="number" name="Tc" class="form-control" id="Tc" placeholder="Tc kimlik numaranız" ref={register({
               required:true,
               maxLength:11,
               minLength:11
               
           })}></input>
-          {_.get("tc.type",errors)==="required" && (<p>boş bırakılamaz</p>)}
-          {_.get("tc.type",errors)==="maxLength" && (<p style={{color:"#A52A2A"}}>tc kimlik numarası 11 haneden uzun olamaz</p>)}
-          {_.get("tc.type",errors)==="minLength" && (<p>tc kimlik numarası 11 haneden kısa olamaz</p>)}
+          {_.get("Tc.type",errors)==="required" && (<p>boş bırakılamaz</p>)}
+          {_.get("Tc.type",errors)==="maxLength" && (<p style={{color:"#A52A2A"}}>tc kimlik numarası 11 haneden uzun olamaz</p>)}
+          {_.get("Tc.type",errors)==="minLength" && (<p>tc kimlik numarası 11 haneden kısa olamaz</p>)}
         </div>
         <div class="form-group">
           <label for="Name">Name:</label>
-          <input type="text" class="form-control" id="Name" placeholder="Adınız" ref={register}></input>
+          <input type="text" name="Name" class="form-control"  id="Name" placeholder="Adınız" ref={register({
+            required:true,
+            pattern:/^[A-Za-z-şçİğüöı]+$/i
+          })}></input>
+          {_.get("Name.type",errors)==="required" &&(<p>boş bırakılamaz</p>)}
+          {_.get("Name.type",errors)==="pattern" &&(<p>Sadece harf ile girdi yapınız</p>)}
         </div>
         <div class="form-group">
-          <label for="LastName">E-mail:</label>
-          <input type="text" class="form-control" id="LastName" placeholder="Soyadınız" ref={register}></input>
+          <label for="LastName">LastName:</label>
+          <input type="text" name="LastName" class="form-control" id="LastName" placeholder="Soyadınız" ref={register({
+            required:true,
+            pattern: /^[A-Za-z-şçİğüöı]+$/i
+          })}></input>
+          {_.get("LastName.type",errors)==="required" && (<p>Boş bırakılamaz</p>)}
+          {_.get("LastName.type",errors)==="pattern" && (<p>Sadece harf ile girdi yapınız</p>)}
         </div>
         <div class="form-group">
-          <label for="Age">Yaşınız:</label>
-          <input type="number" class="form-control" id="Age" placeholder="Yaşınız" ref={register}></input>
+          <label for="Age">Age:</label>
+          <input type="number" name="Age" class="form-control" id="Age" placeholder="Yaşınız" ref={register({
+            min:0, max:100
+          })}></input>
+          {_.get("Age.type",errors) && (<p>0 ile 100 arası değer giriniz</p>)}
         </div>
         <div class="form-group">
           <label for="No">Okul No:</label>
-          <input type="number" class="form-control" id="No" placeholder="Okul No" ref={register}></input>
+          <input type="number" name="No"class="form-control" id="No" placeholder="Okul No" ref={register({
+            required:true,
+            maxLength:9,
+            minLength:9
+          })}></input>
+          {_.get("No.type",errors)==="required" && (<p>boş bırakılamaz</p>)}
+          {_.get("No.type",errors)==="maxLength" && (<p style={{color:"#A52A2A"}}>Okul numarası 9 haneden uzun olamaz</p>)}
+          {_.get("No.type",errors)==="minLength" && (<p>Okul numarası 9 haneden kısa olamaz</p>)}
         </div>
         <div class="form-group">
           <label for="Section">Bölüm:</label>
