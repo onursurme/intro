@@ -42,7 +42,8 @@ function App() {
     alertify.success(product.productName + " Sepete Eklendi", 3); //ekranda ekleme yapıldığı zaman çıkacak olan alert mesajı 3sn kalıyor
   };
   function removeFromCart(product) {
-    let newCart = stateCart.cart.filter((c) => c.product.id !== product.id);
+    let newCart = stateCart.cart.filter((c) => c.product.id !== product.id);//tıklanan cart elemanını silmek için kullanıldı filter özelliği ters mantık ile kullanıldı
+    
     setstateCart({ cart: newCart });
     alertify.error(product.productName + "Sepetten Silindi", 3);
   }

@@ -12,12 +12,11 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import axios from "axios";
 function ProductList({ currentId, info, addToCart }) {
-
   const [state, setstate] = useState({ products: [] });
   const [search, setSearch] = useState("");
   const [filterProducts, setFilterProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   useEffect(async () => {
     //class yapısında karşılığı componentdidmount
     setIsLoading(true);
@@ -34,19 +33,27 @@ function ProductList({ currentId, info, addToCart }) {
       });
   }, []); // boş köşeli parantez renderdan önce useeffecti çalıştır demek
 
+  useEffect(async () => {
+    setFilterProducts(
+      state.products.filter((productt) =>
+        productt.productName.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search, state]);
+
   var sayi = 0;
 
   return (
     <div>
       <h3>{info.title}</h3>
+      <input
+        type="text"
+        className="form-control col-md-5"
+        placeholder="search"
+        onChange={(e) => setSearch(e.target.value)}
+      ></input>
       <PerfectScrollbar style={{ display: 600, height: 500 }}>
         <div>
-          <input
-            type="text"
-            className="form-control col-md-5"
-            placeholder="search"
-            onChange={(e) => setSearch(e.target.value)}
-          ></input>
           <Table hover dark>
             <thead>
               <tr>
@@ -65,7 +72,7 @@ function ProductList({ currentId, info, addToCart }) {
                 </tr>
               </tbody>
             )}
-            {state.products.map((product) =>
+            {filterProducts.map((product) =>
               currentId === product.categoryId ? (
                 <tbody className="">
                   <tr key={product.id}>
