@@ -2,9 +2,9 @@
 
 File:ProductList.js
 
-Contents: ürün listelemesi yapıldı scrollbar eklendi
+Contents: ürün listelemesi yapıldı scrollbar eklendi, ürünler içerisinde arama olayı tamamlandı
 
-History: 17.03.2021 FatihK
+History: 23.03.2021 FatihK
 */
 import React, { useEffect, useState } from "react";
 import { Table } from "reactstrap";
@@ -12,10 +12,11 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import axios from "axios";
 function ProductList({ currentId, info, addToCart }) {
-  const [state, setstate] = useState({ products: [] });
-  const [search, setSearch] = useState("");
-  const [filterProducts, setFilterProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+
+  const [state, setstate] = useState({ products: [] });//jsondan gelen ürünler listesi
+  const [search, setSearch] = useState("");//search inputundan gelen değer
+  const [filterProducts, setFilterProducts] = useState([]);//yapılan aramaya göre ürün filtrelemesi
+  const [isLoading, setIsLoading] = useState(false);//veri gelmemesi durumunda çalışacak olan loading ekranı
 
   useEffect(async () => {
     //class yapısında karşılığı componentdidmount
@@ -25,7 +26,6 @@ function ProductList({ currentId, info, addToCart }) {
       .then((Response) => {
         //axios ile json verisi çekildi
         setstate({ products: Response.data }); //Hooks da karşılığı useState
-
         setIsLoading(false);
       })
       .catch((error) => {
@@ -34,12 +34,12 @@ function ProductList({ currentId, info, addToCart }) {
   }, []); // boş köşeli parantez renderdan önce useeffecti çalıştır demek
 
   useEffect(async () => {
-    setFilterProducts(
-      state.products.filter((productt) =>
+    setFilterProducts(//input boş ise bütün verileri filter products statetine çekiyor
+      state.products.filter((productt) =>//jsondan çekilen ürünleri searcstatetindeki veriye göre filtreleyerek filterproducts a kaydediyor
         productt.productName.toLowerCase().includes(search.toLowerCase())
       )
     );
-  }, [search, state]);
+  }, [search, state]);//istenilen stateler çalıştığı zaman tetiklenen useeffect
 
   var sayi = 0;
 
@@ -51,7 +51,7 @@ function ProductList({ currentId, info, addToCart }) {
         className="form-control col-md-5"
         placeholder="search"
         onChange={(e) => setSearch(e.target.value)}
-      ></input>
+      ></input>{/*search inputunun değerini search statetine kaydetmek için kullanılmakta */}
       <PerfectScrollbar style={{ display: 600, height: 500 }}>
         <div>
           <Table hover dark>

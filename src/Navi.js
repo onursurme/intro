@@ -28,7 +28,7 @@ const Navi =(props)=>{
  
     return (
       <div >
-        <Navbar color="light " light expand="md">
+        <Navbar color="light " light expand="xl">
           <NavbarBrand ><Link to="/" className="text-muted" style={{textDecoration:'none'}}>HepsiAnnova</Link></NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar >
